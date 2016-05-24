@@ -71,7 +71,20 @@
 			arr.push({line:"No it isn't strange after changes upon changes we are more or less the same.",author: "Paul Simon"});
 			arr.push({line:"Some men just want to watch the world burn.",author: "Unkown"});
 			arr.push({line:"You cannot teach men anything, you can only help them discover it within themselves.",author: "Galileo Galilei"});
-			var b = arr[Math.round(Math.random()*(arr.length-1))];
+			var random = localStorage ? (function(){
+				var prev = Math.round(Math.random()*(arr.length-1));
+				for(var a = 0; a < arr.length*3; a++) {
+					if(localStorage.getItem(prev) === null) {
+						localStorage.setItem(prev,"true");
+						return prev;
+					} else {
+						prev = Math.round(Math.random()*(arr.length-1));
+					}
+				}
+				localStorage.clear();
+				return prev;
+			})() : Math.round(Math.random()*(arr.length-1));
+			var b = arr[random];
 			document.getElementById("line").innerText = b.line;
 			document.getElementById("author").innerText = b.author;
 		}();
