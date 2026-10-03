@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark" class="theme-dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gerador LGPD — Compliance LGPD para software livre</title>
+  <meta name="description" content="Skill open-source que gera política de privacidade e termos de uso em Markdown, com base na LGPD, no guia da ANPD e em exemplos institucionais.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="DanielSunami">
+  <meta name="theme-color" content="#0b0d10">
+  <link rel="canonical" href="https://danielsunami.github.io/gerador-lgpd/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Gerador LGPD">
+  <meta property="og:url" content="https://danielsunami.github.io/gerador-lgpd/">
+  <meta property="og:title" content="Compliance LGPD para software livre">
+  <meta property="og:description" content="Política de privacidade e termos de uso em Markdown, gerados a partir da lei, do guia da ANPD e dos fatos do seu projeto.">
+  <meta property="og:image" content="https://danielsunami.github.io/gerador-lgpd/img/og.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Gerador LGPD — Compliance LGPD para software livre">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Compliance LGPD para software livre">
+  <meta name="twitter:description" content="Política de privacidade e termos de uso em Markdown, com base na LGPD e no guia da ANPD.">
+  <meta name="twitter:image" content="https://danielsunami.github.io/gerador-lgpd/img/og.png">
+
+  <link rel="icon" type="image/svg+xml" href="/gerador-lgpd/img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="/gerador-lgpd/img/icon-192.png">
+  <link rel="apple-touch-icon" href="/gerador-lgpd/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="/gerador-lgpd/css/bulma.min.css">
+  <link rel="stylesheet" href="/gerador-lgpd/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "O que a skill entrega exatamente?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dois arquivos em Markdown: PRIVACIDADE.md (política de privacidade) e TERMOS.md (termos de uso). É só texto — sem HTML, painel ou deploy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Em que a skill se baseia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Na Lei nº 13.709/2018, no guia da ANPD sobre cookies (quando o projeto os usa) e em exemplos de políticas já publicadas, como a do MPF."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "E se o projeto tiver cookies?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A skill não garante que todos os cookies serão encontrados olhando apenas o código disponível. Para isso seria necessário usar e navegar no site ou sistema e observar o que é criado e coletado — daí a análise meticulosa que cabe ao desenvolvedor ou analista responsável. A política pode ir dentro da privacidade ou em documento separado."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Serve só para software livre?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O foco principal é software gratuito e open-source (incluindo a ideia de sem garantia). Serve de ponto de partida para landings e contextos simples no Brasil. Software pago, corporativo ou de uso interno deve ser revisado por um advogado e por um analista ou técnico de TI — a skill não substitui essa revisão."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como instalar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Preferência: npx skills add DanielSunami/gerador-lgpd. Alternativa: copiar o conteúdo de SKILL.md do repositório e colar no chat da I.A. Detalhes em https://github.com/DanielSunami/gerador-lgpd"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "E se eu precisar de páginas HTML?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A skill não gera site. Você converte o Markdown e publica onde quiser. O Gerador LGPD cuida só do texto."
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "gerador-lgpd",
+    "description": "Skill open-source que gera política de privacidade e termos de uso em Markdown, com base na LGPD e no guia da ANPD.",
+    "url": "https://danielsunami.github.io/gerador-lgpd/",
+    "codeRepository": "https://github.com/DanielSunami/gerador-lgpd",
+    "license": "https://opensource.org/licenses/MIT",
+    "programmingLanguage": "Markdown",
+    "author": {
+      "@type": "Person",
+      "name": "DanielSunami",
+      "url": "https://github.com/DanielSunami"
+    }
+  }
+  </script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" class="icon-sprite" aria-hidden="true">
+    <symbol id="icon-github" viewBox="0 0 16 16">
+      <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+    </symbol>
+  </svg>
+  <header class="nav-bar">
+    <div class="nav-inner">
+      <a class="nav-brand" href="/gerador-lgpd/">Gerador LGPD</a>
+      <nav class="nav-links" aria-label="Seções">
+        <a class="hide-mobile" href="#como-usar">Como usar</a>
+        <a class="hide-mobile" href="#faq">FAQ</a>
+        <a class="button is-info is-small icon-github-link" href="https://github.com/DanielSunami/gerador-lgpd" target="_blank" rel="noopener"><svg class="icon-github" aria-hidden="true"><use href="#icon-github"/></svg>GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-space has-text-centered">
+      <div class="narrow">
+        <p class="eyebrow">Skill para inteligência artificial</p>
+        <h1 class="display-title">
+          Compliance LGPD para software livre
+        </h1>
+        <p class="lead">
+          Política de privacidade e termos de uso em Markdown, gerados a partir da lei, do guia da ANPD e dos fatos do seu projeto.
+        </p>
+        <div class="buttons centered mt-5 mb-0">
+          <a class="button is-info is-medium icon-github-link"
+             href="https://github.com/DanielSunami/gerador-lgpd"
+             target="_blank" rel="noopener"><svg class="icon-github" aria-hidden="true"><use href="#icon-github"/></svg>Ver no GitHub</a>
+          <a class="button is-ghost-light is-medium" href="#como-usar">Como instalar</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section centered" id="base">
+      <div class="wide">
+        <h2 class="section-title">Texto com base na lei, no guia da ANPD e em exemplos reais</h2>
+        <p class="section-lead">
+          A skill busca a LGPD vigente, confirma o que o software faz com dado e só então escreve os dois arquivos.
+        </p>
+        <div class="feature-grid">
+          <article class="feature-card source-card">
+            <div class="feature-icon">01</div>
+            <h3>Lei nº 13.709/2018</h3>
+            <p>Baixa o texto no Planalto antes de redigir. Arts. 5º, 7º, 8º, 9º e 18 entram no documento — sem inventar controlador nem DPO.</p>
+            <p>
+              <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm"
+                 target="_blank" rel="noopener">planalto.gov.br — Lei 13.709/2018</a>
+            </p>
+          </article>
+          <article class="feature-card source-card">
+            <div class="feature-icon">02</div>
+            <h3>Guia da ANPD</h3>
+            <p>Se o projeto usa cookies, consulta o guia orientativo de cookies e proteção de dados pessoais.</p>
+            <p>
+              <a href="https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-cookies-e-protecao-de-dados-pessoais.pdf"
+                 target="_blank" rel="noopener">gov.br/anpd — guia de cookies</a>
+            </p>
+          </article>
+          <article class="feature-card source-card">
+            <div class="feature-icon">03</div>
+            <h3>Exemplos reais</h3>
+            <p>Molde de tom institucional e, quando há cookies, a estrutura da política do MPF. Sem copiar o conteúdo alheio.</p>
+            <p>
+              <a href="https://www.mpf.mp.br/servicos/lgpd/politicas/privacidade/politica-de-cookies"
+                 target="_blank" rel="noopener">mpf.mp.br — política de cookies</a>
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">04</div>
+            <h3>Dois arquivos, dois papéis</h3>
+            <p><code>PRIVACIDADE.md</code> trata dado. <code>TERMOS.md</code> trata uso livre e ausência de garantia.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">05</div>
+            <h3>Confirma antes de escrever</h3>
+            <p>Mostra o quadro de fatos (onde o dado fica, o que não acontece) e espera o seu ok.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">06</div>
+            <h3>Markdown</h3>
+            <p>Não cria site nem publica URL. Você deve revisar e disponibilizar o conteúdo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="como-usar">
+      <div class="narrow">
+        <p class="eyebrow">Como funciona</p>
+        <h2 class="section-title">Três passos</h2>
+        <p class="section-lead">
+          Instale a skill, descreva o projeto, revise o Markdown antes de publicar.
+        </p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div>
+              <h3>Instale a skill</h3>
+              <p>
+                Na linha de comando, ou cole o <code>SKILL.md</code> no ambiente que você já usa.
+              </p>
+              <div class="code-block">npx skills add DanielSunami/gerador-lgpd</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div>
+              <h3>Peça a geração</h3>
+              <p>
+                Conte o que o software ou site faz, quais dados coleta (se coletar) e o contexto.
+                A skill produz os dois arquivos em Markdown.
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div>
+              <h3>Revise e publique</h3>
+              <p>
+                Crie/atualize suas páginas com o texto gerado.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="por-que">
+      <div class="narrow">
+        <p class="eyebrow">SEO</p>
+        <h2 class="section-title">Construção de confiança</h2>
+        <div class="prose">
+          <p>
+            Os sistemas do Google  priorizam conteúdo útil e confiável. Nas diretrizes dos avaliadores de qualidade, o E-E-A-T (Experiência, Especialidade, Autoridade e Confiança) analisa a legitimidade do site. O pilar que mais pesa aqui é a <strong class="text-main">Confiança (Trust)</strong>.
+          </p>
+          <p>
+            Sites comerciais, blogs e e-commerces que não informam quem são ou como tratam os dados dos usuários perdem pontos nesse pilar. Política de privacidade e termos de uso no ar, com link visível, são o mínimo para o buscador entender que o site é legítimo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="faq">
+      <div class="narrow">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="section-title">Perguntas frequentes</h2>
+        <p class="section-lead">
+          Limites claros, para você saber o que esperar.
+        </p>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>O que a skill entrega exatamente?</summary>
+            <div class="faq-body">
+              Dois arquivos em Markdown: <code>PRIVACIDADE.md</code> (política de privacidade)
+              e <code>TERMOS.md</code> (termos de uso). É só texto — sem HTML, painel ou deploy.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Em que a skill se baseia?</summary>
+            <div class="faq-body">
+              Na <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank" rel="noopener">Lei nº 13.709/2018</a>,
+              no <a href="https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-cookies-e-protecao-de-dados-pessoais.pdf" target="_blank" rel="noopener">guia da ANPD sobre cookies</a>
+              (quando o projeto os usa) e em exemplos de políticas já publicadas, como a
+              <a href="https://www.mpf.mp.br/servicos/lgpd/politicas/privacidade/politica-de-cookies" target="_blank" rel="noopener">do MPF</a>.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>E se o projeto tiver cookies?</summary>
+            <div class="faq-body">
+              A skill não garante que todos os cookies serão encontrados olhando apenas o código disponível.
+              Para isso seria necessário usar e navegar no site ou sistema e observar o que é criado e coletado — daí a análise meticulosa que cabe ao desenvolvedor ou analista responsável.
+              A política pode ir dentro da privacidade ou em documento separado.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Serve só para software livre?</summary>
+            <div class="faq-body">
+              O foco principal é software gratuito e open-source (incluindo a ideia de “sem garantia”), mas serve de ponto de partida para landings e contextos simples.
+              Em ambientes comerciais ou corporativos consulte um advogado especialista em LGPD.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Como instalar?</summary>
+            <div class="faq-body">
+              Preferência: <code>npx skills add DanielSunami/gerador-lgpd</code>.
+              Alternativa: copiar o conteúdo de <code>SKILL.md</code> do repositório e colar no chat da I.A.
+              Detalhes em
+              <a class="icon-github-link" href="https://github.com/DanielSunami/gerador-lgpd" target="_blank" rel="noopener"><svg class="icon-github" aria-hidden="true"><use href="#icon-github"/></svg>GitHub</a>.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>E se eu precisar de páginas HTML?</summary>
+            <div class="faq-body">
+              A skill não gera site. Você converte o Markdown e publica onde quiser.
+              O Gerador LGPD cuida só do texto.
+            </div>
+          </details>
+        </div>
+        <div class="disclaimer-quiet">Os textos gerados são ponto de partida. Não constituem aconselhamento jurídico.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="narrow has-text-centered">
+      <nav class="footer-nav" aria-label="Documentos legais">
+        <a href="/gerador-lgpd/privacidade.html">Política de privacidade</a>
+        <a href="/gerador-lgpd/termos.html">Termos de uso</a>
+      </nav>
+      <div><a class="icon-github-link" href="https://github.com/DanielSunami/gerador-lgpd" target="_blank" rel="noopener"><svg class="icon-github" aria-hidden="true"><use href="#icon-github"/></svg></a></div>
+    </div>
+  </footer>
+</body>
+</html>
